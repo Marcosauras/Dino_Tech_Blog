@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, User } = require("../models");
+const { Post, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
@@ -41,23 +41,79 @@ router.get("/post/:id", async (req, res) => {
     const post = postData.get({ plain: true });
 
     res.render("post", {
-      post,
+      ...post,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-
+// login page
 router.get("/login", (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect("/");
+    res.redirect("/dashboard");
     return;
   }
 
   res.render("login");
 });
+
+// users dashboard
+router.get("/dashboard", withAuth, async (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect("/login");
+    return;
+  } else {
+    // Find the user based on the session ID
+    const userData = await Post.findAll({
+      where: {user_id: req.session.user_id},
+      include: [{
+          model: Comment,
+          include: {
+              module: User,
+              attributes: ["name"]
+          } 
+      }]
+    });
+  }
+  try {
+
+
+const userPosts = user.map((post) => post.get({plain: true}));
+res.render("dashboard", {
+  userPosts,
+  logged_in: req.session.logged_in,
+});
+} catch(err) {
+  console.log(err);
+  res.status(400).json(err);
+  }
+});
+
+router.get("dashboard/:id", async (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect("/login");
+    return;
+  } else {
+  try{
+      const onePost = Post.findByPk(req.params.id,
+          {include: [{
+              model: Comment,
+              include: {
+                  model: User,
+                  attributes: ["name"]
+              }
+          }
+      ]});
+      const editPost = (await onePost).get({ plain: true});
+          res.render("editOrDeletePost", {
+              editPost,
+          });
+  } catch (err) {
+      console.error(err);
+      res.status(400).json(err);
+  }
+}})
 
 module.exports = router;

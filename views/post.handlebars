@@ -1,10 +1,14 @@
   <div class="">
     <div class="m-5 border-4 rounded border-teal-500">
       <h2 class="bg-teal-500 flex justify-between p-1">
-        <a href="/post/{{id}}" class="text-xl">{{post_name}}</a>
-        <p>Created by {{user.name}} on {{format_date date_created}}</p>
+        <p class="text-xl">{{post.post_name}}</p>
+        <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p>
       </h2 class="">
-      <p class="bg-sky-200 p-3">{{post_description}}</p>
-
+      <p class="bg-sky-200 p-3">{{post.post_description}}</p>
     </div>
+    {{!-- {{#each post.comment.comment as |comment|}} --}}
+    <div >
+      <p class="bg-sky-200 p-3">{{post.comment.comment}}</p>
+    </div>
+    {{!-- {{/each}} --}}
   </div>
