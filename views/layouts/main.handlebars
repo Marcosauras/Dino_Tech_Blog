@@ -1,0 +1,44 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dino's Tech Blog!</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <div class="min-h-screen bg-zinc-800">
+      <header class="bg-sky-500 grid grid-cols-2 h-16 p-3">
+        <h1 class="text-4xl">
+          <a href="/">Dino's Tech Blog!</a>
+        </h1>
+        <nav class="flex justify-evenly">
+            <a href="/" class="text-xl">Home</a>
+
+          <!-- Conditionally render login or logout links -->
+          {{#if logged_in}}
+            <a href="/dashboard" class="text-xl">Dashboard</a>
+            <button class="text-xl" id="logout">logout</button>
+          {{else}}
+            <a href="/login" class="text-xl">login</a>
+          {{/if}}
+        </nav>
+      </header>
+      <main class="">
+        <!-- Render the sub layout -->
+        {{{body}}}
+      </main>
+      <footer>
+      </footer>
+    </div>
+
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
+  </body>
+
+</html>

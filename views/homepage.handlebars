@@ -1,0 +1,12 @@
+{{#each post as |post|}}
+  <div class="">
+    <div class="m-5 border-4 rounded border-teal-500">
+      <h2 class="bg-teal-500 flex justify-between p-1">
+        <a href="/post/{{post.id}}" class="text-xl">{{post.title}}</a>
+        <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p>
+      </h2 class="">
+      <p class="bg-sky-200 p-3">{{post.description}}</p>
+
+    </div>
+  </div>
+{{/each}}

@@ -1,0 +1,12 @@
+[
+    {
+      "title": "Introduction",
+      "description": "Hi, there my name is Sam, I can't wait to meet you all!",
+      "user_id": 1
+    },
+    {
+      "title": "Web Page Styling",
+      "description": "You know Tailwind is actually pretty fun to use",
+      "user_id": 2
+    }
+]
