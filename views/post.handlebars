@@ -1,14 +1,36 @@
   <div class="">
     <div class="m-5 border-4 rounded border-teal-500">
       <h2 class="bg-teal-500 flex justify-between p-1">
-        <p class="text-xl">{{post.post_name}}</p>
+        <p class="text-xl">{{post.title}}</p>
         <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p>
       </h2 class="">
-      <p class="bg-sky-200 p-3">{{post.post_description}}</p>
+      <p class="bg-sky-200 p-3">{{post.description}}</p>
     </div>
-    {{!-- {{#each post.comment.comment as |comment|}} --}}
-    <div >
+    {{#each post.comment.comment as |comment|}}
+    <div>
       <p class="bg-sky-200 p-3">{{post.comment.comment}}</p>
     </div>
-    {{!-- {{/each}} --}}
+    {{/each}}
   </div>
+  
+
+  <div class="mt-5 has-text-centered">
+    {{#if logged_in}}
+    <button class="button is-info js-modal-trigger" data-target="comment-modal" data-id="{{singlePost.id}}" >Add Comment</button>
+    {{else}}
+    <a href="/login" class="button is-info" id="comment-login">Add Comment</a>
+    {{/if}}
+</div>
+
+{{#each singlePost.comments as |comments| }}
+<div class="card article mt-5">
+    <div class="comments card-content">
+        <div class="has-text-right">
+            <h4 class="has-text-weight-semibold">{{user.user_name}} commented on {{formDate comments.createdAt}}</h4>
+        </div>
+        <div>
+            {{comments.contents}}
+        </div>
+    </div>
+</div>
+{{/each}}

@@ -1,14 +1,26 @@
 const sequelize = require("../config/connection");
-const seedUser = require("./userData");
-const seedPost = require("./postsData");
-const seedComment = require("./commentData");
+const { User, Post, Comment } = require("../models");
+const userData = require("./userData.json");
+const postData = require("./postsData.json");
+const commentData = require("./commentData.json");
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
+// bulk create kept messing up passwords
+  const seedUser = await User.bulkCreate(userData, {
+    individualHooks: true,
+    returning: true,
+  });
 
-  seedUser();
-  seedPost();
-  seedComment();
+  const posts = await Post.bulkCreate(postData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  const comment = await Comment.bulkCreate(commentData, {
+    individualHooks: true,
+    returning: true,
+  });
 
   process.exit(0);
 };

@@ -17,7 +17,7 @@ const hbs = expHandlebars.create({ helpers });
 const sess = {
   secret: 'Super secret secret',
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24,
+    maxAge: 24 * 60 * 60 * 24,
     httpOnly: true,
     secure: false,
     sameSite: 'strict',

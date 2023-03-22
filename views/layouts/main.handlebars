@@ -17,10 +17,11 @@
         </h1>
         <nav class="flex justify-evenly">
             <a href="/" class="text-xl">Home</a>
-            <a href="/dashboard" class="text-xl">Dashboard</a>
+
           <!-- Conditionally render login or logout links -->
           {{#if logged_in}}
-            <button class="no-button text-xl" id="logout">logout</button>
+            <a href="/dashboard" class="text-xl">Dashboard</a>
+            <button class="text-xl" id="logout">logout</button>
           {{else}}
             <a href="/login" class="text-xl">login</a>
           {{/if}}
