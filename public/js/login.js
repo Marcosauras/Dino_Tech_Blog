@@ -1,7 +1,7 @@
 const loginHandler = async (e) => {
   e.preventDefault();
   
-  const name = document.querySelector(`#user-login`).value.trim();
+  const name = document.querySelector("#user-login").value.trim();
   const password = document.querySelector("#password-login").value.trim();
 
 
@@ -13,8 +13,7 @@ const loginHandler = async (e) => {
     });
     if(response.ok) {
         document.location.replace('/');
-    } 
-    alert(response.statusText);
+    }
   }
 }
 document
