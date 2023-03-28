@@ -1,40 +1,27 @@
 {{!-- skeleton from Module 14 lesson 20 /views/login.handlebars --}}
-<div class="m-10">
+<div class="m-10 bg-zinc-800">
     {{!-- holds both login and logout div's --}}
-    <div class="bg-blue-400 m-2 p-5">
+    <div class="bg-blue-400 m-2 p-5 rounded">
         {{!-- login section --}}
-        <h2>Login</h2>
-        <form class="" id="login-form">
-            <div class="">
-                <label for="userName" class="">Username:</label>
-                <input class="input" type="text" id="user-login" />
+        <h2 class="my-2 text-2xl">Login</h2>
+        <form  id="login-form">
+            <div>
+                <label for="userName" >Username:</label>
+                <input class="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    type="text" id="user-login" />
             </div>
-            <div class="">
+            <div>
                 <label for="password-login" class="label">Password:</label>
-                <div class="">
-                    <input class="input" type="password" id="password-login" />
+                <div>
+                    <input class="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" id="password-login" />
                 </div>
             </div>
-            <div class="">
-                <button class="btn" type="submit" id="login-btn">login</button>
+            <div>
+                <button class="btn mt-4 px-4 py-2 bg-sky-700 hover:bg-sky-200 text-white hover:text-black font-bold rounded" type="submit" id="login-btn">login</button>
             </div>
         </form>
+        <a href="/signup" class="font-medium text-black-600 dark:text-blue-500 hover:underline">Haven't signed up yet, click here</a>
     </div>
-    <div class="bg-blue-400 m-2 p-5">
-        <h2 class="title">Signup</h2>
-        <form class="form signup-form">
-            <div class="m-2">
-                <label for="username-signup">Username:</label>
-                <input class="input" type="text" id="username-signup" />
-            </div>
-            <div class="">
-                <label for="password-signup">Password:</label>
-                <input class="form-input input" type="password" id="password-signup" />
-            </div>
-            <div class="">
-                <button class="button" type="submit">signup</button>
-            </div>
-        </form>
-    </div>
+
 </div>
 <script src="./js/login.js"></script>

@@ -28,7 +28,8 @@ router.post("/", async (req, res) => {
             description: req.body.description,
             user_id: req.session.user_id
         });
-        res.status(200).json({post, message : `You have created a New Post!`})
+          
+        res.status(200).json({ newPost, message : "You have created a New Post!"})
     } catch (err) {
         res.status(500).json(err);
     }

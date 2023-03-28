@@ -1,36 +1,44 @@
-  <div class="">
-    <div class="m-5 border-4 rounded border-teal-500">
-      <h2 class="bg-teal-500 flex justify-between p-1">
-        <p class="text-xl">{{post.title}}</p>
-        <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p>
-      </h2 class="">
-      <p class="bg-sky-200 p-3">{{post.description}}</p>
-    </div>
-    {{#each post.comment.comment as |comment|}}
-    <div>
-      <p class="bg-sky-200 p-3">{{post.comment.comment}}</p>
-    </div>
-    {{/each}}
-  </div>
-  
-
-  <div class="mt-5 has-text-centered">
-    {{#if logged_in}}
-    <button class="button is-info js-modal-trigger" data-target="comment-modal" data-id="{{singlePost.id}}" >Add Comment</button>
-    {{else}}
-    <a href="/login" class="button is-info" id="comment-login">Add Comment</a>
-    {{/if}}
-</div>
-
-{{#each singlePost.comments as |comments| }}
-<div class="card article mt-5">
-    <div class="comments card-content">
-        <div class="has-text-right">
-            <h4 class="has-text-weight-semibold">{{user.user_name}} commented on {{formDate comments.createdAt}}</h4>
-        </div>
+  <div class="mt-10 bg-zinc-800">
+    <div class="mt-5 mx-5 p-1 rounded bg-gradient-to-r from-sky-500 to-sky-700">
         <div>
-            {{comments.contents}}
+            <h2 class="flex justify-start">
+                <a href="/post/{{post.id}}" class="text-xl">{{post.title}}</a>
+            </h2>
+
+            <p class="bg-sky-200 p-3 rounded">{{post.description}}</p>
+
+            <div class="flex justify-end">
+                <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p>
+            </div>
         </div>
     </div>
-</div>
-{{/each}}
+
+
+
+    <div class="mx-5 mt-2 p-1 rounded bg-gradient-to-r from-sky-500 to-sky-700">
+      <div class="bg-sky-200 p-3">
+            {{#each post.comments as |comment|}}
+        <p>{{comment.comment}}</p>
+        <h2 >- {{comment.user.name}} {{format_date comment.date_created }}</h2>
+          {{/each}}
+      </div>
+    </div>
+
+    {{!-- adds the ability to add a comment if logged in --}}
+
+    {{#if logged_in}}
+    <div class="mx-5 mt-2 p-1 rounded bg-gradient-to-r from-sky-500 to-sky-700" id="comment-div">
+      <form>
+        <div class="bg-sky-200 p-3">
+          <label for="comment">add a comment: </label>
+          <input class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="comment" />
+        </div>
+        <button class="btn mt-4 px-4 py-2 bg-sky-700 hover:bg-sky-200 text-white hover:text-black font-bold rounded" id="commentButton" data-id="{{post.id}}" >Add Comment</button>
+      </form>
+    </div>
+    {{/if}}
+
+  </div>
+{{#if logged_in}}
+<script src="/js/createComment.js"></script>
+{{/if}}

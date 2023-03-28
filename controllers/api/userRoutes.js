@@ -47,7 +47,6 @@ router.post("/login", async (req, res) => {
         });
       return;
     }
-    console.log("valid password");
     req.session.save(() => {
       req.session.user_id = userSigningIn.id;
       req.session.logged_in = true;
@@ -56,7 +55,6 @@ router.post("/login", async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({error: error, message: "Something went wrong, I know it is all my fault and I hope you will wait for me to fix it."});
-    console.log(error)
   }
 });
 

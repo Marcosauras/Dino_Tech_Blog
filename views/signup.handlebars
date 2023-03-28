@@ -1,0 +1,23 @@
+<div class="m-10 bg-zinc-800">
+    <div class="bg-blue-400 m-2 p-5 rounded">
+        <h2 class="title my-2 text-2xl">Sign-up</h2>
+        {{!-- signup form --}}
+        <form class="form sign-up-form">
+            <div>
+                <label for="username-sign-up">Username:</label>
+                <input class="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="username-sign-up" />
+            </div>
+            <div>
+                <label for="password-sign-up">Password:</label>
+                <input class="form-input input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" id="password-sign-up" />
+            </div>
+            <div>
+                <button class="button btn mt-4 px-4 py-2 bg-sky-700 hover:bg-sky-200 text-white hover:text-black font-bold rounded" id="sign-up-form" type="submit">signup</button>
+            </div>
+        </form>
+        {{!-- send user to login if they already have an account --}}
+        <a href="/login" class="font-medium text-black-600 dark:text-blue-500 hover:underline">already have an account, click here</a>
+    </div>
+</div>
+
+<script src="./js/signUp.js"></script>
