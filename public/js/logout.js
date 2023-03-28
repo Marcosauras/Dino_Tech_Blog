@@ -6,7 +6,7 @@ const logout = async (e) => {
 });
 
 if(response.ok) {
-    document.location.replace('/login');
+    document.location.replace('/dashboard');
 } else {
     console.log('An error is present and we are working on fixing it.')
 }
