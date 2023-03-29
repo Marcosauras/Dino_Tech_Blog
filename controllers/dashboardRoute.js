@@ -6,12 +6,8 @@ router.get("/", withAuth, async (req, res) => {
   try {
     const userLoggedIn = await Post.findAll({
       where: { user_id: req.session.user_id },
-      include: [{
-        model: Comment,
-        include: [{
-          model: User
-        }]
-      }, {
+      include: [
+      {
         model: User
       }]
     });

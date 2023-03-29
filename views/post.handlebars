@@ -14,7 +14,7 @@
     </div>
 
 
-
+{{#if post.comments}}
     <div class="mx-5 mt-2 p-1 rounded bg-gradient-to-r from-sky-500 to-sky-700">
       <div class="bg-sky-200 p-3">
             {{#each post.comments as |comment|}}
@@ -23,7 +23,7 @@
           {{/each}}
       </div>
     </div>
-
+{{/if}}
     {{!-- adds the ability to add a comment if logged in --}}
 
     {{#if logged_in}}
